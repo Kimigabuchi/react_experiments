@@ -14,7 +14,4 @@ export default class Comment extends Component {
     const {comment} = this.props;
     return <section>{comment.text}</section>;
   }
-  getButtonDescription = () => {
-    return this.state.isOpen ? "close" : "open";
-  }
 }

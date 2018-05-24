@@ -14,7 +14,9 @@ export default class Article extends Component {
     return (
       <div>
         <h3>{article.title}</h3>
-        <button onClick={this.toggleOpen}>{this.getButtonDescription()}</button>
+        <button onClick={this.toggleOpen}>
+          {this.getButtonDescription()}
+        </button>
         {this.getBody()} 
       </div>
     )

@@ -11,7 +11,7 @@ class CommentList extends Comment {
   }
   getBody = () => {
     const {comments, isOpen, toggleOpen} = this.props;    
-    if (comments.length == 0) {
+    if (comments.length === 0) {
       return <div>No comments yet</div>
     }
     return (

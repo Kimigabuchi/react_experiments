@@ -1,18 +1,24 @@
 import React, {Component as ReactComponent} from 'react';
 
 export default (OriginalAccordeonComponent) => class WrappedAccordeonComponent extends ReactComponent {
-  state = {
-    openArticleID: null,
-  }
-  render() {
-    return  <OriginalAccordeonComponent {...this.props} openArticleID={this.state.openArticleID} accordeonOpen={this.accordeonOpen} />
-  }
-  accordeonOpen = (openArticleID) => ev => {
-    ev && ev.preventDefault && ev.preventDefault();
-    let resultOpenArticleID = null;
-    if (openArticleID !== this.state.openArticleID) {
-      resultOpenArticleID = openArticleID
+  constructor(props) {
+    super(props)
+    this.state = {
+      openItemID: props.defaultOpenID
     }
-    this.setState({ openArticleID: resultOpenArticleID })
+  }
+  // state = {
+    // openItemID: null,
+  // }
+  render() {
+    return  <OriginalAccordeonComponent {...this.props} openItemID={this.state.openItemID} accordeonOpen={this.accordeonOpen} />
+  }
+  accordeonOpen = (openItemID) => ev => {
+    ev && ev.preventDefault && ev.preventDefault()
+    let resultOpenItemID = null;
+    if (openItemID !== this.state.openItemID) {
+      resultOpenItemID = openItemID
+    }
+    this.setState({ openItemID: resultOpenItemID })
   }
 };

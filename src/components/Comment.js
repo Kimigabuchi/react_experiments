@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 export default class Comment extends Component {
   static propTypes = {
@@ -9,7 +9,7 @@ export default class Comment extends Component {
     })
   };
   render() {
-    const {comment} = this.props;
+    const {comment} = this.props
     return (
       <div>
         <h3>{comment.user}</h3>
@@ -18,7 +18,7 @@ export default class Comment extends Component {
     )
   }
   getBody = () => {
-    const {comment} = this.props;
-    return <section>{comment.text}</section>;
+    const {comment} = this.props
+    return <section>{comment.text}</section>
   }
 }

@@ -17,10 +17,10 @@
 }
 
 .article-appear {
-  opacity: 1;
+  opacity: 0.01;
 }
 
 .article-appear.article-appear-active {
-  opacity: 0.01;
+  opacity: 1;
   transition: opacity 500ms ease-in;
 }

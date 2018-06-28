@@ -7,7 +7,7 @@ import './DateInterval.css'
 
 class DateInterval extends Component {
   static defaultProps = {
-    numberOfMonths: 2,
+    numberOfMonths: 1,
   }
   constructor(props) {
     super(props)
@@ -34,19 +34,9 @@ class DateInterval extends Component {
   render() {
     const {from, to} = this.state;
     const modifiers = {start: from, end: to};
-    console.log(from);
+    const selectedRange = from && to && `${from.toLocaleDateString()} - ${to.toLocaleDateString()}`
     return (
       <div className="RangeExample">
-        <p>
-          {!from && !to && 'Please select the first day'}
-          {from && !to && 'Please select the last day'}
-          {from && to && `Selected from ${from.toLocaleDateString()} to ${to.toLocaleDateString()}`}{' '}
-          {from && to && (
-            <button className="link" onClick={this.handleResetClick}>
-              Reset
-            </button>
-          )}
-        </p>
         <DayPicker
           className="Selectable"
           numberOfMonths={this.props.numberOfMonths}
@@ -54,6 +44,17 @@ class DateInterval extends Component {
           modifiers={modifiers}
           onDayClick={this.handleDayClick}
         />
+        <div>
+          {!from && !to && 'Пожалуйста, выберите первый день'}
+          {from && !to && 'Пожалуйста, выберите последний день'}
+          {from && to && `Выбран интервал от ${from.toLocaleDateString()} до ${to.toLocaleDateString()}`}{' '}
+          {from && to && (
+            <button className="link" onClick={this.handleResetClick}>
+              Reset
+            </button>
+          )}
+        </div>
+        <div>{selectedRange}</div>
       </div>
     )
   }

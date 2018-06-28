@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ArticleList from './ArticleList'
 import UserForm from './UserForm'
-import DateInterval from './DateInterval'
+import DateInterval from '../Filters/DateInterval'
 
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'

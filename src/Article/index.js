@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import CommentList from './CommentList';
+import CommentList from '../components/CommentList';
 import PropTypes from 'prop-types';
 import {CSSTransitionGroup} from 'react-transition-group'
-import './Article.css'
+import './style.css'
 
 class Article extends Component {
   static propTypes = {

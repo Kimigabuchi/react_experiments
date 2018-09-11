@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import CommentList from '../components/CommentList';
+import CommentList from '../CommentList';
 import PropTypes from 'prop-types';
 import {CSSTransitionGroup} from 'react-transition-group'
 import './style.css'
+import {connect} from 'react-redux'
+import {deleteArticle} from '../../AC'
 
 class Article extends Component {
   static propTypes = {
@@ -22,6 +24,7 @@ class Article extends Component {
         <button onClick={toggleOpen}>
           {this.getButtonDescription(isOpen)}
         </button>
+        <button onClick={this.handleDelete}>Delete me!</button>
         <CSSTransitionGroup
           transitionName="article"
           transitionAppear={true}
@@ -34,6 +37,10 @@ class Article extends Component {
         </CSSTransitionGroup>
       </div>
     )
+  }
+  handleDelete = () => {
+    const {deleteArticle, article} = this.props
+    deleteArticle(article.id)
   }
   getBody = () => {
     const {article, isOpen} = this.props
@@ -50,4 +57,4 @@ class Article extends Component {
   }
 }
 
-export default Article;
+export default connect(null, {deleteArticle})(Article);

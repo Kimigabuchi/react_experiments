@@ -1,11 +1,6 @@
 import React, {Component} from "react"
-import PropTypes from "prop-types"
-
 
 class UserForm extends Component {
-  static propTypes = {
-
-  }
   state = {
     username: ""
   }

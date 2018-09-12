@@ -32,4 +32,4 @@ const mapToDispatch = {increment}
 
 const decorator = connect(mapStateToProps, mapToDispatch)
 
-export default decorator(Counter) ;
+export default decorator(Counter)

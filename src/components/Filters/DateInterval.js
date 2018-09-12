@@ -4,43 +4,27 @@ import DayPicker, {DateUtils} from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 import './DateInterval.css'
 
+import {connect} from 'react-redux'
+import {setDateRange} from '../../AC'
+
 class DateInterval extends Component {
-  static defaultProps = {
-    numberOfMonths: 1,
+  handleDayClick = (day) => {
+    const {setDateRange, date} = this.props
+    setDateRange(DateUtils.addDayToRange(day, date))
   }
-  constructor(props) {
-    super(props)
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
-  }
-
-  getInitialState() {
-    return {
-      from: undefined,
-      to: undefined,
-    }
-  }
-
-  handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state);
-    this.setState(range);
-  }
-  handleResetClick() {
-    this.setState(this.getInitialState());
+  handleResetClick = () => {
+    const {setDateRange} = this.props
+    setDateRange(DateUtils.addDayToRange(null, {from: null, to: null}))
   }
 
   render() {
-    const {from, to} = this.state;
-    const modifiers = {start: from, end: to};
+    const {from, to} = this.props.date;
     const selectedRange = from && to && `${from.toLocaleDateString()} - ${to.toLocaleDateString()}`
     return (
       <div className="RangeExample">
         <DayPicker
           className="Selectable"
-          numberOfMonths={this.props.numberOfMonths}
-          selectedDays={[from, {from, to}]}
-          modifiers={modifiers}
+          selectedDays={day => DateUtils.isDayInRange(day, { from, to })}
           onDayClick={this.handleDayClick}
         />
         <div>
@@ -48,7 +32,7 @@ class DateInterval extends Component {
           {from && !to && 'Пожалуйста, выберите последний день'}
           {from && to && `Выбран интервал от ${from.toLocaleDateString()} до ${to.toLocaleDateString()}`}{' '}
           {from && to && (
-            <button className="link" onClick={this.handleResetClick}>
+            <button className="link" onClick={this.handleResetClick.bind(this)}>
               Reset
             </button>
           )}
@@ -59,4 +43,4 @@ class DateInterval extends Component {
   }
 }
 
-export default DateInterval;
+export default connect((state) => ({date: state.date}), {setDateRange})(DateInterval);

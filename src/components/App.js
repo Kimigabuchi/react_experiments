@@ -2,22 +2,22 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import ArticleList from './ArticleList'
 import UserForm from './UserForm'
-import DateInterval from './Filters/DateInterval'
+import Filter from './Filters'
 import Counter from './Counter'
 
-import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 
 class App extends Component {
   static propTypes = {
     articles: PropTypes.array,
   }
+  changeSelection = selection => this.setState({selection})
   render() {
-    const {articles} = this.props
     return (
       <div>
         <Counter />
         <UserForm />
+        <Filter />
         <ArticleList />
       </div>
     )
@@ -26,6 +26,3 @@ class App extends Component {
 }
 
 export default App;
-// <DateInterval />
-// <Select options={options} value={this.state.selection} onChange={this.changeSelection} multi={true} />
-// changeSelection = selection => this.setState({selection})
